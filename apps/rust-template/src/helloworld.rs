@@ -22,6 +22,7 @@ pub fn hello_load_from_ledger(cmd: String){
     klave::notifier::notify(&msg);
 }
 
+#[allow(dead_code)]
 pub fn hello_insert_in_ledger(cmd: String){
     let Ok(v) = serde_json::from_str::<Value>(&cmd) else {
         klave::notifier::notify_error(&format!("failed to parse '{}' as json", cmd));
