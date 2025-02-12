@@ -1,3 +1,6 @@
+0 - Install cargo-component subcommand
+`cargo install cargo-component`
+
 1 - Component has been scaffold with:
 `cargo component new rust-template --lib`
 
