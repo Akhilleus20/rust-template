@@ -7,4 +7,5 @@ world rust-template {
     export insert-in-ledger: func(cmd: string);
     export ping: func(cmd: string);
     export ping2: func();
+    export create-user: func(cmd: string);
 }

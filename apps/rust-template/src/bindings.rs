@@ -37,12 +37,21 @@ pub unsafe fn _export_ping2_cabi<T: Guest>() {
     #[cfg(target_arch = "wasm32")] _rt::run_ctors_once();
     T::ping2();
 }
+#[doc(hidden)]
+#[allow(non_snake_case)]
+pub unsafe fn _export_create_user_cabi<T: Guest>(arg0: *mut u8, arg1: usize) {
+    #[cfg(target_arch = "wasm32")] _rt::run_ctors_once();
+    let len0 = arg1;
+    let bytes0 = _rt::Vec::from_raw_parts(arg0.cast(), len0, len0);
+    T::create_user(_rt::string_lift(bytes0));
+}
 pub trait Guest {
     fn register_routes();
     fn load_from_ledger(cmd: _rt::String);
     fn insert_in_ledger(cmd: _rt::String);
     fn ping(cmd: _rt::String);
     fn ping2();
+    fn create_user(cmd: _rt::String);
 }
 #[doc(hidden)]
 macro_rules! __export_world_rust_template_cabi {
@@ -58,7 +67,9 @@ macro_rules! __export_world_rust_template_cabi {
         unsafe extern "C" fn export_ping(arg0 : * mut u8, arg1 : usize,) {
         $($path_to_types)*:: _export_ping_cabi::<$ty > (arg0, arg1) } #[export_name =
         "ping2"] unsafe extern "C" fn export_ping2() { $($path_to_types)*::
-        _export_ping2_cabi::<$ty > () } };
+        _export_ping2_cabi::<$ty > () } #[export_name = "create-user"] unsafe extern "C"
+        fn export_create_user(arg0 : * mut u8, arg1 : usize,) { $($path_to_types)*::
+        _export_create_user_cabi::<$ty > (arg0, arg1) } };
     };
 }
 #[doc(hidden)]
@@ -112,13 +123,13 @@ pub(crate) use __export_rust_template_impl as export;
 #[cfg(target_arch = "wasm32")]
 #[link_section = "component-type:wit-bindgen:0.36.0:component:rust-template:rust-template:encoded world"]
 #[doc(hidden)]
-pub static __WIT_BINDGEN_COMPONENT_TYPE: [u8; 276] = *b"\
-\0asm\x0d\0\x01\0\0\x19\x16wit-component-encoding\x04\0\x07\x90\x01\x01A\x02\x01\
-A\x07\x01@\0\x01\0\x04\0\x0fregister-routes\x01\0\x01@\x01\x03cmds\x01\0\x04\0\x10\
+pub static __WIT_BINDGEN_COMPONENT_TYPE: [u8; 292] = *b"\
+\0asm\x0d\0\x01\0\0\x19\x16wit-component-encoding\x04\0\x07\xa0\x01\x01A\x02\x01\
+A\x08\x01@\0\x01\0\x04\0\x0fregister-routes\x01\0\x01@\x01\x03cmds\x01\0\x04\0\x10\
 load-from-ledger\x01\x01\x04\0\x10insert-in-ledger\x01\x01\x04\0\x04ping\x01\x01\
-\x04\0\x05ping2\x01\0\x04\0%component:rust-template/rust-template\x04\0\x0b\x13\x01\
-\0\x0drust-template\x03\0\0\0G\x09producers\x01\x0cprocessed-by\x02\x0dwit-compo\
-nent\x070.220.1\x10wit-bindgen-rust\x060.36.0";
+\x04\0\x05ping2\x01\0\x04\0\x0bcreate-user\x01\x01\x04\0%component:rust-template\
+/rust-template\x04\0\x0b\x13\x01\0\x0drust-template\x03\0\0\0G\x09producers\x01\x0c\
+processed-by\x02\x0dwit-component\x070.220.1\x10wit-bindgen-rust\x060.36.0";
 #[inline(never)]
 #[doc(hidden)]
 pub fn __link_custom_section_describing_imports() {

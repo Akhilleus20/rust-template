@@ -19,6 +19,7 @@ impl Guest for Component {
         klave::router::add_user_transaction("insert-in-ledger");
         klave::router::add_user_query("ping");
         klave::router::add_user_query("ping2");
+        klave::router::add_user_transaction("create-user");
     }
 
     fn load_from_ledger(cmd: String){
@@ -35,6 +36,10 @@ impl Guest for Component {
 
     fn ping2() {
         klave::notifier::notify("pang2");
+    }
+
+    fn create_user(cmd:String){
+        user::create_user(cmd);
     }
 }
 
