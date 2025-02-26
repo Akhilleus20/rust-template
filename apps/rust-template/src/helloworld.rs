@@ -47,3 +47,12 @@ pub fn hello_insert_in_ledger(cmd: String){
         });
     klave::notifier::notify(&result_as_json.to_string());
 }
+
+pub fn hello_ping(cmd: String){
+    let Ok(v) = serde_json::from_str::<Value>(&cmd) else {
+        klave::notifier::notify("pong");
+        return
+    };
+    let value = v["value"].as_str().unwrap();
+    klave::notifier::notify(&value);
+}

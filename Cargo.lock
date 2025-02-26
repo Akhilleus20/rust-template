@@ -187,9 +187,9 @@ checksum = "d75a2a4b1b190afb6f5425f10f6a8f959d2ea0b9c2b1d79553551850539e4674"
 
 [[package]]
 name = "klave"
-version = "0.1.0"
+version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3bd527db9ed7a86ca4c8266b6541666a1f94f040b61c331bf2b01a986adabcc6"
+checksum = "082b406359af255f915473b5bb671371497426b928805e81fff8e9336e734c6c"
 dependencies = [
  "anyhow",
  "base64",
@@ -214,9 +214,9 @@ checksum = "78ca9ab1a0babb1e7d5695e3530886289c18cf2f87ec19a575a0abdce112e3a3"
 
 [[package]]
 name = "musig2"
-version = "0.2.3"
+version = "0.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fd55e6cfd1ddd92698a3e456432e16310f0810faad83ac732e2466ed0961b46d"
+checksum = "d89eb08ce8778538f84198774795f418358360a29841cfea8dbbb28c04d777e2"
 dependencies = [
  "base16ct",
  "hmac",
@@ -309,9 +309,9 @@ checksum = "f3cb5ba0dc43242ce17de99c180e96db90b235b8a9fdc9543c96d2209116bd9f"
 
 [[package]]
 name = "secp"
-version = "0.4.1"
+version = "0.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "85ed54b1141d8cec428d8a4abf01282755ba4e4c8a621dd23fa2e0ed761814c2"
+checksum = "d7ac68feda6cce08c5091b4e87cf93d4b7fa04b4afd9988d4b36121d949f79ec"
 dependencies = [
  "base16ct",
  "once_cell",

@@ -1,5 +1,7 @@
 #[allow(warnings)]
 mod bindings;
+mod musigTest;
+mod user;
 
 use bindings::Guest;
 use klave;
@@ -27,8 +29,8 @@ impl Guest for Component {
         helloworld::hello_insert_in_ledger(cmd);
     }
 
-    fn ping() {
-        klave::notifier::notify("pong");
+    fn ping(cmd: String) {
+        helloworld::hello_ping(cmd);
     }
 
     fn ping2() {
