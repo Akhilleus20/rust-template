@@ -19,7 +19,7 @@ pub fn create_user(cmd: String){
         klave::notifier::notify_error(&format!("failed to read '{}' from ledger", connector_key));
         return
     };
-    if (!user.is_empty())
+    if !user.is_empty()
     {
         klave::notifier::notify_error("User associated with this context key has already been created");
         return
